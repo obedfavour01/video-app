@@ -7,9 +7,15 @@ const UserSchema = new mongoose.Schema({
         unique : true,
     },
 
+    email: {
+        type: String,
+        required: true,
+        unique: true,
+    },
+
     password: {
         type: String,
-        reuired: true,
+     
     },
 
     img: {
@@ -25,6 +31,10 @@ const UserSchema = new mongoose.Schema({
         type: [String]
     },
 
+    fromGoogle :{
+        type : Boolean,
+        default: false,
+    },
 
 
 },

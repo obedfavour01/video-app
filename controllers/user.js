@@ -51,7 +51,7 @@ export const subscribe =async(req,res,next) => {
 
     try {
 
-        // just know that ypu shouldnt be able to suscribe more than once 
+        // just know that you shouldnt be able to suscribe more than once 
         //write the logic for that
 
             await User.findByIdAndUpdate(req.user.id,{ 
