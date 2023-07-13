@@ -31,7 +31,12 @@ app.use("/api/users", userRoutes)
 app.use("/api/videos",videoRoutes)
 app.use("/api/comments",commentRoutes)
 
-
+app.use(cors({
+    origin: [""],
+    methods:["POST", "GET"],
+    credentials: true
+    
+}));
 app.use((err,req,res,next) => {
         const status = err.status || 500;
         const message = err.message || "Something went wrong";
