@@ -26,7 +26,7 @@ const Home = ({type}) => {
         const res = await axios.get(`videos/${type}`)
         setVideos(res.data)
         setIsLoading(false)
-        console.log(videos)
+        // console.log(videos)
       } catch (error) {
         console.log(error.message)
       }

@@ -25,7 +25,7 @@ const Search = () => {
   return (
     <Container>
         {
-            videos.map((video) => (
+            videos && videos.map((video) => (
                 <Cards key = {video._id} video = {video}/>
             ))
         }

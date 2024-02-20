@@ -128,7 +128,6 @@ const MenuContainer = styled.div`
   useEffect(() => {
     window.addEventListener('resize', () => {
       setInnerWIdth(window.innerWidth)
-      console.log(innerWidth)
     })
   })
   

@@ -9,9 +9,6 @@ import authRoutes from "./routes/auth.js"
 
 
 
-
-
-
 const app = express();
 dotenv.config()
 const port = 5000;
@@ -45,7 +42,7 @@ app.use((err,req,res,next) => {
 
 process.setMaxListeners(0);
 
-app.listen(port, ()=> {
+app.listen(port, () => {
 
     connect()
     console.log("Connected")
