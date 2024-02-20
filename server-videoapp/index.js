@@ -43,7 +43,6 @@ app.use((err,req,res,next) => {
 process.setMaxListeners(0);
 
 app.listen(port, () => {
-
     connect()
     console.log("Connected")
 })
