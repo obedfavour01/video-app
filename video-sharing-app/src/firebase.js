@@ -7,7 +7,7 @@ import { getAuth, GoogleAuthProvider } from "firebase/auth"
 // Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyCDD9eObcA7Sm-FFDud6egkLNnjtDAw_Pk",
-  authDomain: "video-sharin8.firebaseapp.com",
+  authDomain: "video-app-frontend-beta.vercel.app",
   projectId: "video-sharin8",
   storageBucket: "video-sharin8.appspot.com",
   messagingSenderId: "1040965164329",

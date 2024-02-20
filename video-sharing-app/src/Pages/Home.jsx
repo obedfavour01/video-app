@@ -26,7 +26,6 @@ const Home = ({type}) => {
         const res = await axios.get(`videos/${type}`)
         setVideos(res.data)
         setIsLoading(false)
-        // console.log(videos)
       } catch (error) {
         console.log(error.message)
       }
@@ -39,7 +38,7 @@ const Home = ({type}) => {
 
     <Container>
       {
-     isLoading ? (<CardsSkeletons/>):(  videos && videos.map((video) => 
+     isLoading ? (<CardsSkeletons/>):(  Array.isArray(videos) && videos.map((video) => 
           <Cards key = {video._id} video = {video} isLoading = {isLoading} setIsLoading = {setIsLoading}/>
 
         ))
