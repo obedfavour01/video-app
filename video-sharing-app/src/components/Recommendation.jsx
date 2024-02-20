@@ -2,6 +2,7 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import Cards from './Cards'
+import { VideoAPI } from '../utils/api'
 
 
 const Container = styled.div`
@@ -17,7 +18,7 @@ useEffect(() => {
     try{
         const fetchVideos =
         async() => {
-           const res = await axios.get(`videos/tags?tags=${tags}`)
+           const res = await axios.get(`${VideoAPI}/videos/tags?tags=${tags}`)
    
            setVideos(res.data)
        }

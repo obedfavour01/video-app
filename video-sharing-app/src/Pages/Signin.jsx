@@ -9,6 +9,7 @@ import {  signInWithPopup  } from "firebase/auth"
 import { auth,provider } from '../firebase'
 import google from "../images/google.png"
 import { useNavigate } from 'react-router-dom'
+import { VideoAPI } from '../utils/api';
 
 const Container = styled.div`
     display: flex;
@@ -147,7 +148,7 @@ const Signin = () => {
     e.preventDefault();
     dispatch(signUpStart())
     try{
-      const res = await axios.post("/auth/signup", {
+      const res = await axios.post(`${VideoAPI}/auth/signup`, {
         name:name,
         password:password,
         email: email
@@ -164,7 +165,7 @@ const handleLogin = async(e) => {
     e.preventDefault();
     dispatch(loginStart())
     try{
-        const res = await axios.post("/auth/signin", {name,password})
+        const res = await axios.post(`${VideoAPI}/auth/signin`, {name,password})
        dispatch(loginSuccess(res.data))
        res.status === 200 && navigate('/')
 
@@ -183,7 +184,7 @@ const signInWithGoogle = async () => {
 
         console.log(result)
         axios
-          .post("/auth/google", {
+          .post(`${VideoAPI}/auth/google`, {
             name: result.user.displayName,
             email: result.user.email,
             img: result.user.photoURL,

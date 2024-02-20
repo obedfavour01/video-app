@@ -4,6 +4,7 @@ import channelImage from '../images/ChannelImage.png'
 import Comment from './Comment'
 import axios from 'axios'
 import { useSelector } from 'react-redux'
+import { VideoAPI } from '../utils/api'
 
 
 const Container = styled.div`
@@ -43,7 +44,7 @@ useEffect(() => {
   const fetchComments = async() => {
 
     try{
-      const res = await axios.get(`/comments/${videoId}`)
+      const res = await axios.get(`${VideoAPI}/comments/${videoId}`)
 
       setComments(res.data)
     }catch(err){

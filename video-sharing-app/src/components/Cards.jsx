@@ -5,6 +5,7 @@ import channelImage from '../images/ChannelImage.png'
 import { Link } from 'react-router-dom'
 import {format} from 'timeago.js'
 import axios from 'axios'
+import { VideoAPI } from '../utils/api'
 
 
 const Container = styled.div`
@@ -69,7 +70,7 @@ const Cards = ({type,video}) => {
 
   useEffect(() => {
     const fetchChannel = async() => {
-    const res = await axios.get(`/users/find/${video.userId}`);
+    const res = await axios.get(`${VideoAPI}/users/find/${video.userId}`);
       setChannel(res.data)
     } 
 

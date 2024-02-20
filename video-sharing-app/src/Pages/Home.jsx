@@ -5,6 +5,7 @@ import Cards from '../components/Cards'
 import axios from "axios"
 import CardSkeleton from '../components/CardSkeleton'
 import { CardsSkeletons } from '../components/CardsSkeletons'
+import { VideoAPI } from '../utils/api'
 
 
 const Container = styled.div`
@@ -23,7 +24,7 @@ const Home = ({type}) => {
     const fetchVideos = async() => {
       setIsLoading(true)
       try {
-        const res = await axios.get(`videos/${type}`)
+        const res = await axios.get(`${VideoAPI}/videos/${type}`)
         setVideos(res.data)
         setIsLoading(false)
       } catch (error) {

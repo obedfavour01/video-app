@@ -17,6 +17,7 @@ import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import ThumbDownIcon from '@mui/icons-material/ThumbDown';
 import { subscription } from '../Redux/userSlice';
 import Recommendation from '../components/Recommendation';
+import { VideoAPI } from '../utils/api';
 
 const Container = styled.div`
   display: flex;
@@ -177,8 +178,8 @@ const Video = () => {
   useEffect(()=> {
     const fetchData = async() => {
       try{
-          const videoRes =await axios.get(`/videos/find/${path}`)
-          const channelRes =await axios.get(`/users/find/${videoRes.data.userId}`)
+          const videoRes =await axios.get(`${VideoAPI}/videos/find/${path}`)
+          const channelRes =await axios.get(`${VideoAPI}/users/find/${videoRes.data.userId}`)
           setChannel(channelRes.data)
           dispatch(fetchSuccess(videoRes.data))
 
@@ -194,13 +195,13 @@ const Video = () => {
 
   const handleLike = async() =>{
 
-    await axios.put(`/users/like/${currentVideo._id}`)
+    await axios.put(`${VideoAPI}/users/like/${currentVideo._id}`)
     dispatch(like(currentUser._id))
   }
 
 
   const handleDislike = async() =>{
-    await axios.put(`/users/dislike/${currentVideo._id}`)
+    await axios.put(`${VideoAPI}/users/dislike/${currentVideo._id}`)
     dispatch(dislike(currentUser._id))
 }
 
@@ -210,10 +211,10 @@ const handleSub = async() => {
 
     currentUser.subscribedUsers?.includes(channel._id) ? 
   
-    await axios.put(`/users/unsub/${channel._id}`)
+    await axios.put(`${VideoAPI}/users/unsub/${channel._id}`)
   :
   
-    await axios.put(`/users/sub/${channel._id}`);
+    await axios.put(`${VideoAPI}/users/sub/${channel._id}`);
 
     dispatch(subscription(channel._id));
   }
