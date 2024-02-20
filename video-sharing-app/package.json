@@ -50,5 +50,5 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "https://video-app-api.vercel.app/"
+  "proxy": "https://video-sharing-api.onrender.com/"
 }
