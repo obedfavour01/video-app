@@ -140,9 +140,9 @@ const Signin = () => {
    const {loadingforSignUp} = useSelector(state => state.user)
 
 
-   useEffect(() => {
-    dispatch(signUpSuccesful())
-   },[dispatch])
+  //  useEffect(() => {
+  //   dispatch(signUpSuccesful())
+  //  },[dispatch])
 
    const handleSignUp = async(e) => {
     e.preventDefault();

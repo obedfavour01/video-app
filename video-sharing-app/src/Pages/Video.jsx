@@ -11,7 +11,7 @@ import Comments from '../components/Comments';
 import { useDispatch,useSelector} from 'react-redux'
 import { useLocation } from 'react-router-dom';
 import axios from 'axios';
-import { dislike, fetchSuccess, like } from '../Redux/videoSlice';
+import { dislike, fetchStart, fetchSuccess, like } from '../Redux/videoSlice';
 import { format } from 'timeago.js';
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import ThumbDownIcon from '@mui/icons-material/ThumbDown';
@@ -171,12 +171,14 @@ const Video = () => {
   const dispatch = useDispatch()
 
   const path = useLocation().pathname.split("/")[2]
-
+  
   const[channel, setChannel] = useState({})
 
 
   useEffect(()=> {
     const fetchData = async() => {
+      dispatch(fetchStart())
+
       try{
           const videoRes =await axios.get(`${VideoAPI}/videos/find/${path}`)
           const channelRes =await axios.get(`${VideoAPI}/users/find/${videoRes.data.userId}`)
@@ -227,7 +229,12 @@ const handleSub = async() => {
     <Container>
       <Content>
           <VideoWrapper>
-              <VideoFrame src = {currentVideo.videoUrl} controls autoPlay/>
+            {
+              !(currentVideo?.url) ?
+              <VideoFrame src = {currentVideo?.videoUrl} controls autoPlay/>:
+              (<div>loading</div>)
+
+            }
           </VideoWrapper>
 
           <Title>{currentVideo?.title}</Title>
@@ -236,12 +243,12 @@ const handleSub = async() => {
               <Info>{currentVideo?.views} views<> &#183;</> {format(currentVideo?.createdAt)}</Info>
               <Buttons>
                     <Button onClick={handleLike} className = 'btn'>
-                     {currentVideo.likes?.includes(currentUser._id) ? <ThumbUpIcon/> :<ThumbUpOffAltIcon/>}  {currentVideo?.likes?.length}
+                     {currentVideo?.likes?.includes(currentUser?._id) ? <ThumbUpIcon/> :<ThumbUpOffAltIcon/>}  {currentVideo?.likes?.length}
                     </Button>
 
 
                     <Button onClick={handleDislike}>
-                      {currentVideo.dislikes?.includes(currentUser._id) ? <ThumbDownIcon/> :<ThumbDownAltIcon/>} Dislike</Button>
+                      {currentVideo?.dislikes?.includes(currentUser._id) ? <ThumbDownIcon/> :<ThumbDownAltIcon/>} Dislike</Button>
                     <Button><ReplyOutlinedIcon/> Share</Button>
                     <Button><AddTaskOutlinedIcon/></Button>
 
@@ -263,7 +270,7 @@ const handleSub = async() => {
         </ChannelInfo>
 
         <Subscribe onClick={handleSub}>
-          {currentUser.subscribedUsers?.includes(channel._id) ? 
+          {currentUser?.subscribedUsers?.includes(channel._id) ? 
           "SUBSCRIBED": 
           "SUBSCRIBE"
           }

@@ -16,6 +16,7 @@ height: 100vh;
 color: ${({theme}) => theme.text};
 position: sticky;
 top: 0;
+bottom:0;
 overflow-y: scroll;
 overflow-x: hidden;
 

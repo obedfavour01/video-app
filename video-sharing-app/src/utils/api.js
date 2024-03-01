@@ -1,1 +1,1 @@
-export const VideoAPI = "https://video-sharing-api.onrender.com"
+export const VideoAPI = "https://video-sharing-api.onrender.com/api";
